@@ -1,0 +1,207 @@
+{% load staticfiles %}
+
+<tr>
+<td style="width:190px; height:540px;padding-left: 10px;" valign="top">
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script>
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#browser").treeview({
+			toggle: function() {
+				console.log("%s was toggled.", $(this).find(">span").text());
+			}
+		});
+	});
+	</script>
+
+    <h2>Browse by:</h2>
+    <div style="height: 520px; width: 190px; overflow: auto;">
+        <div>
+<table class="tablesorter table" style="margin :0; white-space: nowrap;">
+    <tbody>
+        <tr>
+            <td style="border-top: 0px;">
+    <ul id="browser" class="filetree treeview-famfamfam">
+        <li class="closed"><span class="folder">Data Type</span>
+            <ul>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_type/expression/',success:function(){$('#result_table').html(a.responseText)}})">expression</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_type/methylation/',success:function(){$('#result_table').html(a.responseText)}})">methylation</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_type/sequence/',success:function(){$('#result_table').html(a.responseText)}})">sequence</span></li>
+                
+            </ul>
+        </li>
+<li class="closed"><span class="folder">Species</span>
+            <ul>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/danio_rerio/',success:function(){$('#result_table').html(a.responseText)}})">danio rerio</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/homo_sapiens/',success:function(){$('#result_table').html(a.responseText)}})">homo sapiens</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/jc_polyomavirus/',success:function(){$('#result_table').html(a.responseText)}})">jc polyomavirus</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/mus_musculus/',success:function(){$('#result_table').html(a.responseText)}})">mus musculus</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/oryzias_latipes/',success:function(){$('#result_table').html(a.responseText)}})">oryzias latipes</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/rattus_norvegicus/',success:function(){$('#result_table').html(a.responseText)}})">rattus norvegicus</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/sus_scrofa/',success:function(){$('#result_table').html(a.responseText)}})">sus scrofa</span></li>
+                <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_species/synthetic_construct/',success:function(){$('#result_table').html(a.responseText)}})">synthetic construct</span></li>
+                
+            </ul>
+        </li>
+<li class="closed"><span class="folder">Disease</span>
+    <ul>
+        <li class="closed"><span class="folder">A</span>
+            <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/acute_kidney_injury/',success:function(){$('#result_table').html(a.responseText)}})">acute kidney injury</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/arrhythmias_cardiac/',success:function(){$('#result_table').html(a.responseText)}})">arrhythmias cardiac</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/asthma-chronic_obstructive_pulmonary_disease_overlap_syndrome/',success:function(){$('#result_table').html(a.responseText)}})">asthma-chronic obstructive pulmonary disease overlap syndrome</span></li>
+        </ul>
+        </li>
+        <li class="closed"><span class="folder">C</span>
+            <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/carcinoma_hepatocellular/',success:function(){$('#result_table').html(a.responseText)}})">carcinoma hepatocellular</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/cardiomegaly/',success:function(){$('#result_table').html(a.responseText)}})">cardiomegaly</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/cardiovascular_disease/',success:function(){$('#result_table').html(a.responseText)}})">cardiovascular disease</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/cellular_senescence/',success:function(){$('#result_table').html(a.responseText)}})">cellular senescence</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/cystic_fibrosis/',success:function(){$('#result_table').html(a.responseText)}})">cystic fibrosis</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">D</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/diabetic_cardiomyopathes/',success:function(){$('#result_table').html(a.responseText)}})">diabetic cardiomyopathes</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/diabetic_nephropathies/',success:function(){$('#result_table').html(a.responseText)}})">diabetic nephropathies</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">E</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/endomyocardial_fibrosis/',success:function(){$('#result_table').html(a.responseText)}})">endomyocardial fibrosis</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">G</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/glomerulonephritis/',success:function(){$('#result_table').html(a.responseText)}})">glomerulonephritis</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/glomerulosclerosis/',success:function(){$('#result_table').html(a.responseText)}})">glomerulosclerosis</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">H</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/heart_failure/',success:function(){$('#result_table').html(a.responseText)}})">heart failure</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/hepatitis/',success:function(){$('#result_table').html(a.responseText)}})">hepatitis</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/hepatotoxicity/',success:function(){$('#result_table').html(a.responseText)}})">hepatotoxicity</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">I</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/idiopathic_interstitial_pneumonias/',success:function(){$('#result_table').html(a.responseText)}})">idiopathic interstitial pneumonias</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/idiopathic_pulmonary_arterial_hypertension/',success:function(){$('#result_table').html(a.responseText)}})">idiopathic pulmonary arterial hypertension</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/idiopathic_pulmonary_fibrosis/',success:function(){$('#result_table').html(a.responseText)}})">idiopathic pulmonary fibrosis</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">K</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/kidney_diseases/',success:function(){$('#result_table').html(a.responseText)}})">kidney diseases</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/kidney_failure_chronic/',success:function(){$('#result_table').html(a.responseText)}})">kidney failure chronic</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">L</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/liver_cirrhosis/',success:function(){$('#result_table').html(a.responseText)}})">liver cirrhosis</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/lung_diseases_interstitial_/',success:function(){$('#result_table').html(a.responseText)}})">lung diseases interstitial </span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/lung_neoplasms/',success:function(){$('#result_table').html(a.responseText)}})">lung neoplasms</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/lupus_nephritis/',success:function(){$('#result_table').html(a.responseText)}})">lupus nephritis</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">M</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/myocardial_infarction/',success:function(){$('#result_table').html(a.responseText)}})">myocardial infarction</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/myocardical_ischemia/',success:function(){$('#result_table').html(a.responseText)}})">myocardical ischemia</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/myocarditis/',success:function(){$('#result_table').html(a.responseText)}})">myocarditis</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">N</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/nephritis_interstitia/',success:function(){$('#result_table').html(a.responseText)}})">nephritis interstitia</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/niemann-pick_diseases/',success:function(){$('#result_table').html(a.responseText)}})">niemann-pick diseases</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/non-alcoholic_fatty_liver_disease/',success:function(){$('#result_table').html(a.responseText)}})">non-alcoholic fatty liver disease</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">P</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/primary_myelofibrosis/',success:function(){$('#result_table').html(a.responseText)}})">primary myelofibrosis</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/pulmonary_emphysema/',success:function(){$('#result_table').html(a.responseText)}})">pulmonary emphysema</span></li>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/pulmonary_fibrosis/',success:function(){$('#result_table').html(a.responseText)}})">pulmonary fibrosis</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">R</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/renal_insufficiency/',success:function(){$('#result_table').html(a.responseText)}})">renal insufficiency</span></li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">V</span>
+    <ul>
+        <li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_disease/ventricular_dysfunction/',success:function(){$('#result_table').html(a.responseText)}})">ventricular dysfunction</span></li>
+    </ul>
+</li>
+    </ul>
+</li>
+<li class="closed"><span class="folder">Tissue</span>
+    <ul>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/blood/',success:function(){$('#result_table').html(a.responseText)}})">blood</span></li>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/bone/',success:function(){$('#result_table').html(a.responseText)}})">bone</span></li>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/cell_line/',success:function(){$('#result_table').html(a.responseText)}})">cell line</span></li>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/heart/',success:function(){$('#result_table').html(a.responseText)}})">heart</span></li>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/kidney/',success:function(){$('#result_table').html(a.responseText)}})">kidney</span></li>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/liver/',success:function(){$('#result_table').html(a.responseText)}})">liver</span></li>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/lung/',success:function(){$('#result_table').html(a.responseText)}})">lung</span></li>
+<li><span class="file"onmouseover="this.style.color='#dc143c'"onmouseout="this.style.color='#000000'"onclick="a=$.ajax({url:'/FDRdb/browse_data_tissue/skin/',success:function(){$('#result_table').html(a.responseText)}})">skin</span></li>
+
+            </ul>
+		</li>
+
+    </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+    </div>
+</td>
+<td style="width:1082px; height:540px;" valign="top" id="result_table">
+    <style>
+        .p_style{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    line-height: 30px;
+    color: #066;
+}
+    </style>
+                <p class="p_style" style="width:90%;margin-left:5%;text-align:justify">
+                    The browse page provides users with two options: browse by RNAs or browse by datasets. On the Dataset browse page, the “optional tree” contains 4 categories: data type, species, disease and tissue. In RNA browse page, the “optional tree” contains 5 types of RNAs (miRNA, lncRNA, mRNA, circRNA and siRNA), species, disease and tissue (1). Users can select the entries under the categories of interest to view specific information about fibrosis (2-3). And, clicking on “click here to download the table” allow the user to download the browsing table (4).
+                </p>
+                <p>
+                    <img src="/static/FDRdb/static/image/help_browse.gif" style="height:385px;width:913px; margin-left:76px; display:block">
+                </p>
+</td>
+</tr>
+<script>
+function exportto() {
+    $('.result_browse_table').tableExport({
+        filename: 'gene_pairs_info',
+        format: 'csv',
+        cols:'1,2,3,4,5,6,7,8,9',
+        head_delimiter:',',
+        col_delimiter:',',
+    });
+};
+</script>
+
+
+
+
+
+
+
+
+
+
+

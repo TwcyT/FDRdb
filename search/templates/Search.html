@@ -1,0 +1,124 @@
+
+<td style="height:395px;border:0px" align = center valign="top">
+
+    <style>
+    .search_title_1 {
+        font-family: "MS Serif", "New York", serif;
+        font-size: 20px;
+        font-style: italic;
+        color: #06C;
+        text-align: center;
+        font-weight: bold;
+        background-color: #FCC;
+        padding-top: 16px;
+    }
+    .search_example{
+        width: 60%;
+        margin-left: 20%;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .example_tr{
+        height:35px;
+    }
+    </style>
+        <table style="width:1100px;text-align: center;" border="1" align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr class="sear1">
+                    <td height="180" valign="top">
+                        <p style="font-family: 'Times New Roman', Times, serif;font-size: 18px;line-height: 30px;padding-top: 30px;">
+                            FDRdb is a powerful tool that helps researchers to explore functional mechanisms of deregulated RNAs in fibrotic diseases. In this interface, users can input mRNA/miRNA/lncRNA/circRNA/siRNA symbol or disease to obtain the fibrotic disease-associated RNA information. FDRdb also provides  pull-down menus to enable users to select all or particular species and tissues. The search case is also provided below the search module for reference.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="search_title_1">
+                    <td height="50">
+                        <span class="bold">Search by</span>
+                        : mRNA / miRNA / lncRNA / circRNA / siRNA / disease 
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:70px">
+                        <form method="post" name="results_form" action="/FDRdb/results/" id="browse_form" role="form"  target="_blank">
+                            {% csrf_token %}
+                            <span>Keyword:</span>
+                            <input autocomplete=off type="text" name="filter" id="searchPlaceholder" class="import">
+                            <span>Species</span>
+                            <select id="search_species" class="form-control flat" name="search_species">
+                                <option value="ALL">all</option>
+                                <option value="canis_familiaris">canis familiaris</option>
+                                <option value="homo_sapiens">homo sapiens</option>
+                                <option value="lucilia">lucilia</option>
+                                <option value="mus_musculus">mus musculus</option>
+                                <option value="ovis_aries">ovis aries</option>
+                                <option value="porcine">porcine</option>
+                                <option value="rattus_norvegicus">rattus norvegicus</option>
+                                <option value="sus_scrofa">sus scrofa</option>
+    
+                            </select>
+                            <span>Tissues</span>
+                            <select id="search_tissues" class="form-control flat" name="search_tissues">
+                                <option value="ALL">all</option>
+                                <option value="bone">bone</option>
+                                <option value="brain">brain</option>
+                                <option value="cell_line">cell line</option>
+                                <option value="eye">eye</option>
+                                <option value="heart">heart</option>
+                                <option value="intestine">intestine</option>
+                                <option value="kidney">kidney</option>
+                                <option value="liver">liver</option>
+                                <option value="lung">lung</option>
+                                <option value="nerve">nerve</option>
+                                <option value="pancreas">pancreas</option>
+                                <option value="skin">skin</option>
+                                <option value="spleen">spleen</option>
+                                <option value="stomach">stomach</option>
+                                <option value="uterus">uterus</option>
+                            </select>
+                            <input onclick="return checkform()" type="submit" value="Search" id="form_submit" class="btn-search">
+                            <script type="text/javascript">    
+                                function checkform(){ 
+                                    if(document.getElementById('searchPlaceholder').value.length==0){    
+                                        alert('Please input at least one word!');
+                                        document.getElementById('searchPlaceholder').focus();
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                                </script>
+                        </form>
+                    </td>
+                </tr>
+                <tr class="search_title_1">
+                    <td height="45">
+                        <span class="bold">Input example:</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:70px">
+                        <table class="search_example">
+                            <tr class="example_tr">
+                                <td>miRNA: mir-200a</td>
+                                <td>lncRNA: GAS5</td>
+                            </tr>
+                            <tr class="example_tr">
+                                <td>mRNA: CDKN1A</td>
+                                <td>circRNA: circ_0002062</td>
+                            </tr>
+                            <tr class="example_tr">
+                                <td>siRNA: GALNAC</td>
+                                <td>disease: idiopathic pulmonary fibrosis</td>
+                            </tr>
+                            <tr class="example_tr">
+                                <td><p>&nbsp;</p></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </td>
+    

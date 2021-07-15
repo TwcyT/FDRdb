@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/style_main.css">
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script>
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+
+    <script type="text/javascript" src="/static/CGIdb2/static/js/jquery.freezeheader.js"></script>
+    	<script type="text/javascript" src="/static/FDRdb/static/js/anno_svg.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#browser").treeview({
+			toggle: function() {
+				console.log("%s was toggled.", $(this).find(">span").text());
+			}
+		});
+	});
+	</script>
+    <style>
+        .home_des{
+            font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    line-height: 28px;
+    color: #000;
+    padding-top: 30px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 8px;
+        }
+        .home_des_word{
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bolder;
+    color: #F30;
+        }
+        .home_des_link{
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bolder;
+    color: #F30;
+        }
+
+
+
+
+    #nav ul li {
+        float: left;
+        /*包含块*/
+        position:relative;
+    }
+
+        #nav ul li a {
+            display: block;
+
+        }
+
+
+/*二级菜单样式*/
+        #nav ul li ul {
+        position:absolute;
+        height:33px;
+        display:none;
+        }
+            #nav ul li ul li {
+            float:none;
+            }
+            #nav ul li ul li a{
+                background:#054908;
+                border-top:1px solid #FFA042;
+                height:33px;
+            }
+            /*一级菜单悬停时二级菜单可见*/
+        #nav ul li:hover ul {
+        width:100%;
+        display:block;
+
+        }
+ul {
+    list-style:none;
+}
+.tooltips {
+    position: relative;
+    z-index: 2;
+    color: #060;
+}
+.div0 {
+    margin-left: 190px;
+    margin-top: -4px;
+}
+.div1 {
+    margin-left: 355px;
+    margin-top: -15px;
+}
+.div3 {
+    margin-left: 153px;
+    margin-top: -4px;
+}
+.div4 {
+        margin-left: 423px;
+    margin-top: -31px;
+}
+.div5 {
+    margin-left: 128px;
+    margin-top: 21px;
+}
+.div6 {
+        margin-left: 100px;
+    margin-top: -15px;
+}
+.div7 {
+        margin-left: 432px;
+    margin-top: -60px;
+}
+.div8 {
+        margin-left: 435px;
+    margin-top: -8px;
+}
+.div9 {
+    margin-left: 110px;
+    margin-top: 23px;
+}
+.div10 {
+    margin-left: 422px;
+    margin-top: -21px;
+}
+.div11 {
+    margin-left: 122px;
+    margin-top: 82px;
+}
+.div12 {
+    margin-left: 382px;
+    margin-top: 99px;
+}
+.div2 {
+    margin-left: 413px;
+    margin-top: 72px;
+}
+.div13 {
+    margin-left: 410px;
+    margin-top: -165px;
+}
+.div14 {
+    margin-left: 145px;
+    margin-top: 87px;
+}
+.anno_svg{
+				position: absolute;
+				color: whitesmoke;
+				font-size: 15px;
+				padding: 8px 12px;
+				border-radius: 4px;
+				background-color: rgba(50, 50, 50, .9);
+				z-index: 1000;
+				display: none;
+				white-space: nowrap;
+				line-height: 20px;
+width: 300px;
+    white-space: normal;
+}
+    </style>
+    <title>FDRdb</title>
+</head>
+<body>
+<table width="1282" border="1" align="center" cellpadding="0" cellspacing="0" class="tableback" style="background-color: white;">
+    <tbody>
+    <tr>
+        <td valign="top"><img src="/static/FDRdb/static/image/home_top.gif" width="1282" height="203" style="display:block"></td>
+    </tr>
+    <tr>
+        <td class="nav">
+      <div id="nav" class="menu" style="height: 30px; margin-top: -10px;">
+	<ul>
+	  <li class="my_nav" id="current"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/home/',success:function(){$('#context_panel').html(a.responseText)}})">Home</span>｜</li>
+            <li class="my_nav">
+<span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'">Browse</span>｜
+		<ul>
+		  <li id="nav_li" style="padding: 0px; width: 102px; margin-left: -40px; height: 30px; background: #739d34; padding-top: 10px; margin-top: 9px;border-bottom: solid 1px black;" class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/browse/',success:function(){$('#context_panel').html(a.responseText)}})">RNA</span></li>
+		  <li id="nav_li" style="padding: 0px; width: 102px; margin-left: -40px; height: 30px; background: #739d34; padding-top: 10px; border-bottom: solid 1px black;" class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/browse_data/',success:function(){$('#context_panel').html(a.responseText)}})">Dataset</span></li>
+		</ul>
+	      </li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/search/',success:function(){$('#context_panel').html(a.responseText)}})">Search</span>｜</li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/link/',success:function(){$('#context_panel').html(a.responseText)}})">Links</span>｜</li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/download/',success:function(){$('#context_panel').html(a.responseText)}})">Download</span>｜</li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/help/',success:function(){$('#context_panel').html(a.responseText)}})">Help</span></li>
+
+	</ul>
+      </div>
+
+
+
+        </td>
+    </tr>
+    <tr id="context_panel">
+        <td>
+            <table width="1250" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td width="52%" height="478" align="left" valign="top" class="home_des">
+                        <p>
+                            <span class="home_des_word">FDRdb: The Fibrotic Disease RNAome database,</span>
+                            is an open and up-to-data online manually curated depository of RNAs information and data sets about fibrotic diseases across various species. The current version of FDRdb documents 1536 associations between 695 RNAs and 82 fibrotic diseases in 8 species, manually collected from 957 published literatures.
+                        </p>
+                        <p>
+                            <span class="home_des_link"> <a href="https://en.wikipedia.org/wiki/Fibrosis" target="_blank" class="home_des_link">Fibrosis</a></span>
+                            is a common pathological outcome because of the severe or repetitive tissue injury or the dysregulation of wound-healing repair. Fibrotic diseases are defined by the abnormal deposition of extracellular matrix (ECM), which can involve in various of organs such as lung, liver, kidney, heart and skin and lead to organ dysfunction and death.
+                        </p>
+                        <a href="/FDRdb/home_species/homo_sapiens" target="_blank" onmouseover="annoShow_14()" onmouseout="annoHide_14()"><img src="/static/FDRdb/static/image/homo_sapiens.gif" style="position:absolute; margin-top:40px; margin-left:30px; width:100px; display:block"></a>
+                        <a href="/FDRdb/home_species/mus_musculus" target="_blank" onmouseover="annoShow_15()" onmouseout="annoHide_15()"><img src="/static/FDRdb/static/image/mus_musculus.gif" style="position:absolute; margin-top:40px; margin-left:170px; width:100px; display:block"></a>
+                        <a href="/FDRdb/home_species/rattus_norvegicus" target="_blank" onmouseover="annoShow_16()" onmouseout="annoHide_16()"><img src="/static/FDRdb/static/image/rattus_norvegicus.gif" style="position:absolute; margin-top:40px; margin-left:310px; width:100px; display:block"></a>
+                        <a href="/FDRdb/home_species/ovis_aries" target="_blank" onmouseover="annoShow_17()" onmouseout="annoHide_17()"><img src="/static/FDRdb/static/image/ovis_aries.gif" style="position:absolute; margin-top:40px; margin-left:450px; width:100px; display:block"></a>
+                        <a href="/FDRdb/home_species/lucilia" target="_blank" onmouseover="annoShow_18()" onmouseout="annoHide_18()"><img src="/static/FDRdb/static/image/lucilia.gif" style="position:absolute; margin-top:165px; margin-left:95px; width:100px; display:block"></a>
+                        <a href="/FDRdb/home_species/sus_scrofa" target="_blank" onmouseover="annoShow_19()" onmouseout="annoHide_19()"><img src="/static/FDRdb/static/image/sus_scrofa.gif" style="position:absolute; margin-top:165px; margin-left:235px; width:100px; display:block"></a>
+                        <a href="/FDRdb/home_species/porcine" target="_blank" onmouseover="annoShow_20()" onmouseout="annoHide_20()"><img src="/static/FDRdb/static/image/porcine.gif" style="position:absolute; width:100px; margin-top:165px; margin-left:375px; display:block"></a>
+                        <a href="/FDRdb/home_species/canis_familiaris" target="_blank" onmouseover="annoShow_21()" onmouseout="annoHide_21()"><img src="/static/FDRdb/static/image/canis_familiaris.gif" style="position:absolute; margin-top:165px; margin-left:515px; width:100px; display:block"></a>
+
+                    </td>
+                    <td valign="top" class="home_body" style="height: 700px">
+                        <div class="div0">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/brain" target="_blank"  onmouseover="annoShow_0()" onmouseout="annoHide_0()">Brain</a>
+                            </p>
+                        </div>
+                        <div class="div1">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/eye" target="_blank"  onmouseover="annoShow_1()" onmouseout="annoHide_1()">Eye</a>
+                            </p>
+                        </div>
+                        <div class="div2">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/stomach" target="_blank"  onmouseover="annoShow_2()" onmouseout="annoHide_2()">Stomach</a>
+                            </p>
+                        </div>
+                        <div class="div3">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/lung" target="_blank" onmouseover="annoShow_3()" onmouseout="annoHide_3()">Lung</a>
+                            </p>
+                        </div>
+                        <div class="div4">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/heart" target="_blank" onmouseover="annoShow_4()" onmouseout="annoHide_4()">Heart</a>
+                            </p>
+                        </div>
+                        <div class="div5">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/liver" target="_blank" onmouseover="annoShow_5()" onmouseout="annoHide_5()">Liver</a>
+                            </p>
+                        </div>
+                        <div class="div6">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/pancreas" target="_blank" onmouseover="annoShow_6()" onmouseout="annoHide_6()">Pancreas</a>
+                            </p>
+                        </div>
+                        <div class="div7">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/spleen" target="_blank" onmouseover="annoShow_7()" onmouseout="annoHide_7()">Spleen</a>
+                            </p>
+                        </div>
+                        <div class="div8">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/kidney" target="_blank" onmouseover="annoShow_8()" onmouseout="annoHide_8()">Kidney</a>
+                            </p>
+                        </div>
+                        <div class="div9">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/intestine" target="_blank" onmouseover="annoShow_9()" onmouseout="annoHide_9()">Intestine</a>
+                            </p>
+                        </div>
+                        <div class="div10">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/uterus" target="_blank" onmouseover="annoShow_10()" onmouseout="annoHide_10()">Uterus</a>
+                            </p>
+                        </div>
+                        <div class="div11">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/nerve" target="_blank" onmouseover="annoShow_11()" onmouseout="annoHide_11()">Nerve</a>
+                            </p>
+                        </div>
+                        <div class="div12">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/bone" target="_blank" onmouseover="annoShow_12()" onmouseout="annoHide_12()">Bone</a>
+                            </p>
+                        </div>
+                        <div class="div13">
+                            <p>
+                                <a class="tooltips" href="/FDRdb/home_search/skin" target="_blank" onmouseover="annoShow_13()" onmouseout="annoHide_13()">Skin</a>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+     <td height="70" class="bottom"><p>FDRdb: Fibrotic Disease RNAome database</p>
+        <p> Contact guyunyan@ems.hrbmu.edu.cn for inquiries and feedback</p>
+        <p>© All right reserved 2021<br>
+        </p></td>
+    </tr>
+    </tbody>
+</table>
+            <div id="brain" class="anno_svg"></div>
+            <div id="eye" class="anno_svg"></div>
+            <div id="stomach" class="anno_svg"></div>            
+            <div id="lung" class="anno_svg"></div>
+            <div id="heart" class="anno_svg"></div>
+            <div id="liver" class="anno_svg"></div>
+            <div id="pancreas" class="anno_svg"></div>
+            <div id="kidney" class="anno_svg"></div>
+            <div id="spleen" class="anno_svg"></div>
+            <div id="intestine" class="anno_svg"></div>
+            <div id="skin" class="anno_svg"></div>
+            <div id="uterus" class="anno_svg"></div>
+            <div id="nerve" class="anno_svg"></div>
+            <div id="bone" class="anno_svg"></div>
+            <div id="blood" class="anno_svg"></div>
+            <div id="homo_sapiens" class="anno_svg" style="width: 104px;"></div>
+            <div id="mus_musculus" class="anno_svg" style="width: 102px;"></div>
+            <div id="rattus_norvegicus" class="anno_svg" style="width: 124px;"></div>
+            <div id="ovis_aries" class="anno_svg" style="width: 67px;"></div>
+            <div id="lucilia" class="anno_svg" style="width: 40px;"></div>
+            <div id="porcine" class="anno_svg" style="width: 55px;"></div>
+            <div id="canis_familiaris" class="anno_svg" style="width: 105px;"></div>
+            <div id="sus_scrofa" class="anno_svg" style="width: 71px;"></div>
+</body>
+</html>

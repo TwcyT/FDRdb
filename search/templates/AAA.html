@@ -1,0 +1,158 @@
+
+
+
+<td style="height:395px;border:0px" align = center valign="top">
+        <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/tab.css" />
+		<script type="text/javascript" src="/static/FDRdb/static/js/tab.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/input_button.css" />
+
+    <style>
+    .search_title_1 {
+        font-family: "MS Serif", "New York", serif;
+        font-size: 20px;
+        font-style: italic;
+        color: #06C;
+        text-align: center;
+        font-weight: bold;
+        background-color: #FCC;
+        padding-top: 16px;
+    }
+    .search_example{
+        width: 60%;
+        margin-left: 20%;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .example_tr{
+        height:35px;
+    }
+    </style>
+
+        <table style="width:1100px;text-align: center;" border="1" align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+
+
+                <tr>
+                    <td style="height:70px;">
+			<section class="tabs" style="    margin-top: 50px;">
+	            <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1 tab-selector-all" checked="checked" />
+		        <label for="tab-1" class="tab-label-1" style="left:265px">Differential analysis</label>
+
+	            <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2 tab-selector-all" />
+		        <label for="tab-2" class="tab-label-2" style="left:265px">AAA</label>
+
+	            <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3 tab-selector-all" />
+		        <label for="tab-3" class="tab-label-3" style="left:265px">BBB</label>
+
+
+
+			    <div class="clear-shadow"></div>
+
+		        <div class="content">
+			        <div class="content-1">
+                        <table>
+                            <tr>
+                                <td style="width:50%" valign="top">
+                                    <h2>Differential Analysis</h2>
+                                    <p>Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.</p>
+                                </td>
+                                <td style="padding-left: 30px;">
+
+                        <form id="diff_form" action="/FDRdb/upload/" method="post" enctype="multipart/form-data" target="_blank">
+                            {% csrf_token %}
+                            <table style="table-layout: fixed;margin-left: 25px" width="410">
+                                <tbody>
+                                <tr style="height: 60px">
+                                    <td>
+<p style="margin-left: 85px;border-left: none;"><span style="color: red">*</span>Please upload the expression profile here.</p>
+<input class="ant-btn ant-btn-red" type="button" onclick="document.getElementById('inputFile').click()" value="Browse..." />
+<input class="tl-price-input" type="file" id="inputFile" name="analysis" style="display:none" onchange="changeAgentContent()" />
+<input class="tl-price-input" type="text" value="" style="width: 300px" disabled id="inputFileAgent" />
+<script type="text/javascript">
+    function changeAgentContent(){
+        document.getElementById("inputFileAgent").value = document.getElementById("inputFile").value;
+    }
+</script>
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 60px">
+                                    <td>
+<p style="margin-left: 85px;border-left: none;"><span style="color: red">*</span>Please upload the classification file here.</p>
+<input class="ant-btn ant-btn-red" type="button" onclick="document.getElementById('inputFile2').click()" value="Browse..." />
+<input class="tl-price-input" type="file" id="inputFile2" name="class" style="display:none" onchange="changeAgentContent2()" />
+<input class="tl-price-input" type="text" value=""  style="width: 300px" disabled id="inputFileAgent2" />
+<script type="text/javascript">
+    function changeAgentContent2(){
+        document.getElementById("inputFileAgent2").value = document.getElementById("inputFile2").value;
+    }
+</script>
+                                    </td>
+                                </tr>
+                                <tr style="height: 60px">
+                                    <td>
+                                        <p style="margin-left: 85px;border-left: none;">You can select the species that corresponds to your file sample to obtain fibrosis related results.</p>
+                                        <select id="species_select" class="tl-price-input" name="species_select" style="width: 403px">
+                                            <option>None</option>
+                                            <option value="human">Homo sapiens</option>
+                                            <option value="mice">Mus musculus</option>
+                                            <option value="rat">Rattus norvegicus</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr style="height: 150px">
+                                    <td>
+                            <input onclick="return checkform2()" type="submit" class="ant-btn ant-btn-red" value="Upload" style="float: right">
+                            <script type="text/javascript">
+                                function checkform2(){
+                                    if(document.getElementById('inputFile').value.length==0){
+                                        alert('Please upload all required files which marked *');
+                                        document.getElementById('inputFile').focus();
+                                        return false;
+                                    } else if (document.getElementById('inputFile2').value.length==0){
+                                        alert('Please upload all required files which marked *');
+                                        document.getElementById('inputFile2').focus();
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                                </script>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+
+
+                        </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+			        <div class="content-2">
+						<h2>Services</h2>
+                        <p>Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.</p>
+						<h3>Excellence</h3>
+						<p>Like you, I used to think the world was this great place where everybody lived by the same standards I did, then some kid with a nail showed me I was living in his world, a world where chaos rules not order, a world where righteousness is not rewarded. That's Cesar's world, and if you're not willing to play by his rules, then you're gonna have to pay the price. </p>
+				    </div>
+			        <div class="content-3">
+						<h2>Portfolio</h2>
+                        <p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee.</p>
+						<h3>Examples</h3>
+						<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
+				    </div>
+
+		        </div>
+			</section>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    
+    </td>
+    

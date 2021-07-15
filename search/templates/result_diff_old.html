@@ -1,0 +1,436 @@
+
+
+import django.conf
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
+from .models import fibrosis_gene, fibrosis_data
+from .forms import SearchForm, SearchspeciesForm
+from wsgiref.util import FileWrapper
+from django.db.models import Q
+import re, os, json, pandas as pd, numpy as np
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from scipy import stats
+import seaborn as sns
+# Create your views here.
+
+
+
+mol_info = pd.read_table(os.path.join(django.conf.settings.DATA_DIR,"molecular_info.txt"), header=0, index_col=0)
+
+def home(request):
+    return HttpResponse(loader.get_template('FDRdb.html').render({}, request))
+
+def browse(request):
+    template = loader.get_template("Browse.html")
+    return HttpResponse(template.render(request))
+
+def browse_data(request):
+    template = loader.get_template("Browse_data.html")
+    return HttpResponse(template.render(request))
+def help(request):
+    template = loader.get_template("Help.html")
+    return HttpResponse(template.render(request))
+
+def home_sub(request):
+    template = loader.get_template("Home.html")
+    return HttpResponse(template.render(request))
+
+def help_overview(request):
+    template = loader.get_template("help_overview.html")
+    return HttpResponse(template.render(request))
+
+def help_home(request):
+    template = loader.get_template("help_home.html")
+    return HttpResponse(template.render(request))
+
+
+def browse_miRNA(request,miRNA):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(gene_symbol=miRNA)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+
+    return HttpResponse(template.render({"result_info":result_info,"file_name":miRNA},request))
+
+def browse_lncRNA(request,lncRNA):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(gene_symbol=lncRNA)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":lncRNA},request))
+
+def browse_mRNA(request,mRNA):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(gene_symbol=mRNA)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":mRNA},request))
+
+def browse_siRNA(request,siRNA):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(gene_symbol=siRNA)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":siRNA},request))
+
+def browse_snRNA(request,snRNA):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(gene_symbol=snRNA)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":snRNA},request))
+
+def browse_circRNA(request,circRNA):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(gene_symbol=circRNA)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":circRNA},request))
+
+def browse_tissue(request,tissue):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(tissue=tissue)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_namel":tissue},request))
+
+def browse_disease(request,disease):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(disease=disease)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_namel":disease},request))
+
+
+def browse_species(request,species):
+    template = loader.get_template("Browse_table.html")
+    result_info = fibrosis_gene.objects.filter(species=species)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":species},request))
+
+def browse_detail(request,RNA,disease,species,pmid):
+    template = loader.get_template("Detail.html")
+    species = species.replace(' ', '_')
+    disease = disease.replace(' ', '_')
+    result_info = fibrosis_gene.objects.filter(Q(gene_symbol=RNA) & Q(species=species) & Q(disease=disease) & Q(pmid=pmid))
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":RNA},request))
+
+def browse_detail_data(request,data,species,disease):
+    template = loader.get_template("Detail_data.html")
+    data = data.replace(' ', '_')
+    species = species.replace(' ', '_')
+    disease = disease.replace(' ', '_')
+    result_info = fibrosis_data.objects.filter(Q(data_id=data) & Q(species=species) & Q(disease=disease))
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":data},request))
+
+def browse_data_type(request,type):
+    template = loader.get_template("Browse_data_table.html")
+    result_info = fibrosis_data.objects.filter(type=type)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":type},request))
+
+def browse_data_species(request,species):
+    template = loader.get_template("Browse_data_table.html")
+    result_info = fibrosis_data.objects.filter(species=species)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":species},request))
+
+def browse_data_disease(request,disease):
+    template = loader.get_template("Browse_data_table.html")
+    result_info = fibrosis_data.objects.filter(disease=disease)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":disease},request))
+
+def browse_data_tissue(request,tissue):
+    template = loader.get_template("Browse_data_table.html")
+    result_info = fibrosis_data.objects.filter(tissue=tissue)
+    for s in result_info:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.strip().split(";")
+    return HttpResponse(template.render({"result_info":result_info,"file_name":tissue},request))
+
+
+@csrf_exempt
+def results(request):
+    template = loader.get_template("Results.html")
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            search_species = form.cleaned_data["search_species"]
+            search_tissues = form.cleaned_data["search_tissues"]
+            gf = form.cleaned_data["filter"]
+            gf = gf.replace(' ', '_')
+            gf = [i for i in re.split("[,;\s]\s*", gf) if not i == ""]
+            if search_species == 'ALL':
+                if search_tissues == 'ALL':
+                    result_fibrosis = [fibrosis_gene.objects.filter(
+                        Q(gene_symbol=i) | Q(gene_id=i) | Q(disease=i)) for i in gf]
+                else:
+                    result_fibrosis = [fibrosis_gene.objects.filter(
+                        Q(gene_symbol=i) | Q(gene_id=i) | Q(disease=i)).filter(Q(tissue=search_tissues)) for i in gf]
+            else:
+                if search_tissues == 'ALL':
+                    result_fibrosis = [fibrosis_gene.objects.filter(
+                        Q(gene_symbol=i) | Q(gene_id=i) | Q(disease=i)).filter(Q(species=search_species)) for i in gf]
+                else:
+                    result_fibrosis = [fibrosis_gene.objects.filter(
+                        Q(gene_symbol=i) | Q(gene_id=i) | Q(disease=i)).filter(Q(tissue=search_tissues)).filter(Q(species=search_species)) for i in gf]
+            result_fibrosis = result_fibrosis[0]
+            result_fibrosis_final = {result_fibrosis[i] for i in range(0, len(result_fibrosis))}
+            for s in result_fibrosis_final:
+                s.species = s.species.replace('_', ' ')
+                s.tissue = s.tissue.replace('_', ' ')
+                s.expression = s.expression.replace('-', ' ')
+                s.disease = s.disease.replace('_', ' ')
+                s.pmid = s.pmid.replace(';', ' ')
+                s.pmid = s.pmid.strip().split(' ')
+            number = len(result_fibrosis_final)
+            return HttpResponse(template.render({"result_fibrosis": result_fibrosis_final,"number":number}, request))
+    else:
+        form = SearchForm()
+
+    # return HttpResponse(loader.get_template('GI/search.html').render({"form":form},request))
+    return render(request, "Results.html", {'form': form})
+
+
+def home_tissue(request,tissue):
+    template = loader.get_template("home_search.html")
+    result_fibrosis = fibrosis_gene.objects.filter(tissue=tissue)
+    for s in result_fibrosis:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.replace(';', ' ')
+        s.pmid = s.pmid.strip().split(' ')
+
+    return HttpResponse(template.render({"result_fibrosis": result_fibrosis,"tissue_name": tissue}, request))
+
+def home_species(request,species):
+    template = loader.get_template("home_search.html")
+    result_fibrosis = fibrosis_gene.objects.filter(species=species)
+    for s in result_fibrosis:
+        s.species = s.species.replace('_', ' ')
+        s.tissue = s.tissue.replace('_', ' ')
+        s.expression = s.expression.replace('-', ' ')
+        s.disease = s.disease.replace('_', ' ')
+        s.pmid = s.pmid.replace(';', ' ')
+        s.pmid = s.pmid.strip().split(' ')
+
+    return HttpResponse(template.render({"result_fibrosis": result_fibrosis}, request))
+
+
+
+def search(request):
+    template = loader.get_template("Search.html")
+    return HttpResponse(template.render(request))
+
+def download(request):
+    template = loader.get_template("Download.html")
+    return HttpResponse(template.render(request))
+
+def link(request):
+    template = loader.get_template("Links.html")
+    return HttpResponse(template.render(request))
+
+
+def download_csv(request,typename):
+
+    filename = "/alidata/database/FDGAdb/data/download/"+typename+"_FDs_info.csv" # Select your file here.
+    wrapper = FileWrapper(open(filename, 'rb'))
+    response = HttpResponse(wrapper, content_type='application/octet-stream')
+    response['Content-Length'] = os.path.getsize(filename)
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(typename+"_FDs_info.csv")
+
+    return response
+
+def download_txt(request,typename):
+
+    filename = "/alidata/database/FDGAdb/data/download/"+typename+"_FDs_info.txt" # Select your file here.
+    wrapper = FileWrapper(open(filename, 'rb'))
+    response = HttpResponse(wrapper, content_type='application/octet-stream')
+    response['Content-Length'] = os.path.getsize(filename)
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(typename+"_FDs_info.txt")
+
+    return response
+
+def analysis(request):
+    template = loader.get_template("Analysis.html")
+    return HttpResponse(template.render(request))
+
+@csrf_exempt
+def upload(request):
+    try:
+        if request.method == 'POST':
+            data = request.FILES['analysis']
+            classtype = request.FILES['class']
+            dataname = '%s/%s' % (settings.MEDIA_ROOT, data.name)
+            classname = '%s/%s' % (settings.MEDIA_ROOT, classtype.name)
+            ff = open(dataname, 'w+')
+            ff.close()
+            with open(dataname, 'wb') as f:
+                for fdata in data.chunks():
+                    f.write(fdata)
+            tt = open(classname, 'w+')
+            tt.close()
+            with open(classname, 'wb') as t:
+                for tclass in classtype.chunks():
+                    t.write(tclass)
+            data1 = pd.read_table(dataname, header=0, index_col=0)
+            class1 = pd.read_table(classname, header=0, index_col=0)
+            data2 = np.log2(data1 + 0.0001)
+            which = lambda lst: list(np.where(lst)[0])
+            lst1 = map(lambda x: x == 1, class1.iloc[0, :])
+            lst2 = map(lambda x: x == 2, class1.iloc[0, :])
+            samples1 = which(lst1)
+            samples2 = which(lst2)
+            samples_all = samples1+samples2
+            type1 = data2.iloc[:, samples1].mean(axis=1)
+            type2 = data2.iloc[:, samples2].mean(axis=1)
+            # fold_change
+            fold = type2 - type1
+            plt.hist(fold)
+            plt.title("Histogram of fold-change")
+            fdimg_name = '%s/%s' % (settings.MEDIA_ROOT, data.name) + '.histogram_fd.png'
+            plt.savefig(fdimg_name)
+            plt.close()
+            # p
+            pvalue = []
+            filtered_ids = []
+            for i in range(0, data2.shape[0]):
+                ttest = stats.ttest_ind(data2.iloc[i, samples1], data2.iloc[i, samples2])
+                pvalue.append(ttest[1])
+                if (abs(fold[i]) >= 1) and (pvalue[i] <= 0.05):
+                    filtered_ids.append(i)
+            filtered = data2.iloc[filtered_ids, :]
+            # heatmap
+            sns.clustermap(filtered, cmap='RdYlGn_r', standard_scale=0)
+            heatimg_name = '%s/%s' % (settings.MEDIA_ROOT, data.name) + '.histogram_heat.png'
+            plt.savefig(heatimg_name)
+            plt.close()
+            # Histogram of the p-values
+            plt.hist(-np.log(pvalue))
+            plt.title("Histogram of p-value")
+            pimg_name = '%s/%s' % (settings.MEDIA_ROOT, data.name) + '.histogram_p.png'
+            plt.savefig(pimg_name)
+            plt.close()
+            # volcanoimg_name
+            genearray = np.asarray(pvalue)
+            result = pd.DataFrame({'pvalue': genearray, 'FoldChange': fold})
+            result['log(pvalue)'] = -np.log10(result['pvalue'])
+            result['sig'] = 'normal'
+            result['type'] = 'NA'
+            result['size'] = np.abs(result['FoldChange']) / 10
+            result.loc[(result.FoldChange > 1) & (result.pvalue < 0.05), 'sig'] = 'up'
+            result.loc[(result.FoldChange < -1) & (result.pvalue < 0.05), 'sig'] = 'down'
+            form = SearchspeciesForm(request.POST)
+            up_fibrosis = 0
+            down_fibrosis = 0
+            if form.is_valid():
+                species_select = form.cleaned_data["species_select"]
+                if(species_select == 'human'):
+                    result.loc[(data2._stat_axis.values in mol_info.loc[mol_info.species == 'homo_sapiens','symbol']) or (data2._stat_axis.values in  mol_info.loc[mol_info.species == 'homo_sapiens','id']), 'fib_relate'] = 'fibrosis'
+                    up_fibrosis = len(which(result.fib_relate == 'fibrosis' & result.sig == 'up'))
+                    down_fibrosis = len(which(result.fib_relate == 'fibrosis' & result.sig == 'down'))
+                elif(species_select == 'mice'):
+                    result.loc[(data2._stat_axis.values in mol_info.loc[mol_info.species == 'mus_musculus','symbol']) or (data2._stat_axis.values in  mol_info.loc[mol_info.species == 'mus_musculus','id']), 'type'] = 'fibrosis'
+                    up_fibrosis = len(which(result.fib_relate == 'fibrosis' & result.sig == 'up'))
+                    down_fibrosis = len(which(result.fib_relate == 'fibrosis' & result.sig == 'down'))
+                elif(species_select == 'rat'):
+                    result.loc[(data2._stat_axis.values in mol_info.loc[mol_info.species == 'rattus_norvegicus','symbol']) or (data2._stat_axis.values in mol_info.loc[mol_info.species == 'Rattus_norvegicus','id']), 'type'] = 'fibrosis'
+                    up_fibrosis = len(which(result.fib_relate == 'fibrosis' & result.sig == 'up'))
+                    down_fibrosis = len(which(result.fib_relate == 'fibrosis' & result.sig == 'down'))
+            up_gene = len(which(result.sig == 'up'))
+            down_gene = len(which(result.sig == 'down'))
+            ax = sns.scatterplot(x="FoldChange", y="log(pvalue)",
+                                 hue='sig',
+                                 hue_order=('down', 'normal', 'up'),
+                                 palette=("#377EB8", "grey", "#E41A1C"),
+                                 data=result)
+            ax.set_ylabel('-log(pvalue)', fontweight='bold')
+            ax.set_xlabel('FoldChange', fontweight='bold')
+            volcano_fig = ax.get_figure()
+            volcanoimg_name = '%s/%s' % (settings.MEDIA_ROOT, data.name) + '.histogram_volcano.png'
+            volcano_fig.savefig(volcanoimg_name)
+            plt.close()
+            fdimg_address = '/static/FDRdb/static/analysis_data/' + '%s' % (data.name) + '.histogram_fd.png'
+            pimg_address = '/static/FDRdb/static/analysis_data/' + '%s' % (data.name) + '.histogram_p.png'
+            volcanoimg_address = '/static/FDRdb/static/analysis_data/' + '%s' % (data.name) + '.histogram_volcano.png'
+            heatimg_address = '/static/FDRdb/static/analysis_data/' + '%s' % (data.name) + '.histogram_heat.png'
+
+            return HttpResponse(loader.get_template("result_diff.html").render(
+                {"up_fibrosis":up_fibrosis,"down_fibrosis":down_fibrosis,"All_gene_num": data2.shape[0],"Diff_genes_up": up_gene,
+                 "Diff_genes_down": down_gene,"number_sample": len(samples_all),"class1_sample": len(samples1),"class2_sample": len(samples2), "fdimg_name": fdimg_address,
+                 "pimg_name": pimg_address,"volcanoimg_name": volcanoimg_address, "heatimg_name": heatimg_address}, request))
+    except:
+        return HttpResponse(loader.get_template("result_diff.html").render(
+        {"index": 1}, request))
+
+

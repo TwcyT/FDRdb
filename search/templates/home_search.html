@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/style_main.css">
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script>
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+
+    <script type="text/javascript" src="/static/CGIdb2/static/js/jquery.freezeheader.js"></script>
+    	<script type="text/javascript" src="/static/FDRdb/static/js/anno_svg.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#browser").treeview({
+			toggle: function() {
+				console.log("%s was toggled.", $(this).find(">span").text());
+			}
+		});
+	});
+	</script>
+    <style>
+        .home_des{
+            font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    line-height: 28px;
+    color: #000;
+    padding-top: 30px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 8px;
+        }
+        .home_des_word{
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bolder;
+    color: #F30;
+        }
+        .home_des_link{
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bolder;
+    color: #F30;
+        }
+
+
+
+
+    #nav ul li {
+        float: left;
+        /*包含块*/
+        position:relative;
+    }
+
+        #nav ul li a {
+            display: block;
+
+        }
+
+
+/*二级菜单样式*/
+        #nav ul li ul {
+        position:absolute;
+        height:33px;
+        display:none;
+        }
+            #nav ul li ul li {
+            float:none;
+            }
+            #nav ul li ul li a{
+                background:#054908;
+                border-top:1px solid #FFA042;
+                height:33px;
+            }
+            /*一级菜单悬停时二级菜单可见*/
+        #nav ul li:hover ul {
+        width:100%;
+        display:block;
+
+        }
+ul {
+    list-style:none;
+}
+.tooltips {
+    position: relative;
+    z-index: 2;
+    color: #060;
+}
+.div0 {
+    margin-left: 190px;
+    margin-top: -4px;
+}
+.div1 {
+    margin-left: 355px;
+    margin-top: -15px;
+}
+.div3 {
+    margin-left: 153px;
+    margin-top: -4px;
+}
+.div4 {
+        margin-left: 423px;
+    margin-top: -31px;
+}
+.div5 {
+    margin-left: 128px;
+    margin-top: 21px;
+}
+.div6 {
+        margin-left: 100px;
+    margin-top: -15px;
+}
+.div7 {
+        margin-left: 432px;
+    margin-top: -60px;
+}
+.div8 {
+        margin-left: 435px;
+    margin-top: -8px;
+}
+.div9 {
+    margin-left: 110px;
+    margin-top: 23px;
+}
+.div10 {
+    margin-left: 422px;
+    margin-top: -21px;
+}
+.div11 {
+    margin-left: 122px;
+    margin-top: 82px;
+}
+.div12 {
+    margin-left: 382px;
+    margin-top: 99px;
+}
+.div2 {
+    margin-left: 413px;
+    margin-top: 72px;
+}
+.div13 {
+    margin-left: 410px;
+    margin-top: -165px;
+}
+.div14 {
+    margin-left: 145px;
+    margin-top: 87px;
+}
+.anno_svg{
+				position: absolute;
+				color: whitesmoke;
+				font-size: 15px;
+				padding: 8px 12px;
+				border-radius: 4px;
+				background-color: rgba(50, 50, 50, .9);
+				z-index: 1000;
+				display: none;
+				white-space: nowrap;
+				line-height: 20px;
+width: 300px;
+    white-space: normal;
+}
+    </style>
+    <title>FDRdb</title>
+</head>
+<body>
+<table width="1282" border="1" align="center" cellpadding="0" cellspacing="0" class="tableback" style="background-color: white;">
+    <tbody>
+    <tr>
+        <td valign="top"><img src="/static/FDRdb/static/image/home_top.gif" width="1282" height="203" style="display:block"></td>
+    </tr>
+    <tr>
+        <td class="nav">
+      <div id="nav" class="menu" style="height: 30px; margin-top: -10px;">
+	<ul>
+	  <li class="my_nav" id="current"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/home/',success:function(){$('#context_panel').html(a.responseText)}})">Home</span>｜</li>
+            <li class="my_nav">
+<span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'">Browse</span>｜
+		<ul>
+		  <li id="nav_li" style="padding: 0px; width: 102px; margin-left: -40px; height: 30px; background: #739d34; padding-top: 10px; margin-top: 9px;border-bottom: solid 1px black;" class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/browse/',success:function(){$('#context_panel').html(a.responseText)}})">RNA</span></li>
+		  <li id="nav_li" style="padding: 0px; width: 102px; margin-left: -40px; height: 30px; background: #739d34; padding-top: 10px; border-bottom: solid 1px black;" class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/browse_data/',success:function(){$('#context_panel').html(a.responseText)}})">Dataset</span></li>
+		</ul>
+	      </li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/search/',success:function(){$('#context_panel').html(a.responseText)}})">Search</span>｜</li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/link/',success:function(){$('#context_panel').html(a.responseText)}})">Links</span>｜</li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/download/',success:function(){$('#context_panel').html(a.responseText)}})">Download</span>｜</li>
+	  <li class="my_nav"><span class="file option_page" onmouseover="this.style.color='#B74343'" onmouseout="this.style.color='#FFF'" onclick="a=$.ajax({url:'/FDRdb/help/',success:function(){$('#context_panel').html(a.responseText)}})">Help</span></li>
+
+	</ul>
+      </div>
+
+
+
+        </td>
+    </tr>
+
+    <tr id="context_panel">
+
+<td style="width:1082px; height:600px;border: 0;" valign="top" id="result_table">
+
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script>
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+    <script type="text/javascript" src="/static/FDRdb/static/js/jquery.freezeheader.js"></script>
+
+
+    <script>
+var hDiv = document.getElementById('hDiv');
+var dDiv = document.getElementById('dDiv');
+var tb0 = document.getElementById('tb0');
+dDiv.onscroll = function() {
+    tb0.style.left = dDiv.scrollLeft * -1 + 'px'
+}
+    </script>
+<style>
+.result_browse_table {
+    font-family: "MS Serif", "New York", serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #FFF;
+    background-color: #AA6539;
+    text-align: center;
+}
+
+.result_browse_table_td {
+    font-family: "MS Serif", "New York", serif;
+    font-size: 16px;
+    color: #AA6539;
+    text-align: center;
+    background-color: #FFF;
+    font-weight: normal;
+}
+
+.result_browse_table_top {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px;
+    font-weight: bolder;
+    color: #AA6539;
+    text-decoration: none;
+}
+
+
+.pmid {
+    font-family: "MS Serif", "New York", serif;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #AA6539;
+    background-color: #FFF;
+    text-align: center;
+    text-decoration: none;
+}
+
+</style>
+
+    <table style="margin-left: 145px;">
+        <tr>
+            <td width="450" height="80" class="result_browse_table_top">
+                <span onclick="exportto()" style="cursor:pointer">click here to download</span>
+            </td>
+        </tr>
+    </table>
+    <div style="overflow: auto;height:600px; margin-left:116px;">
+        <div id="hDiv" style=" width:1050px;height: 47px;overflow:hidden;">
+            <table width="1000px" border="1" cellpadding="0" cellspacing="0" class="result_browse_table" id="tb0" style="margin-left: 15px;">
+
+        <thead>
+            <tr>
+                <th width="17%" height="35">RNA name</th>
+                <th width="26%">Disease name</th>
+                <th width="17%">Expression</th>
+                <th width="13%">Species</th>
+                <th width="10%">Tissue/<br>Cell line</th>
+                <th width="10%">PubMed ID</th>
+                <th width="7%">Details</th>
+            </tr>
+        </thead>
+    </table>
+        </div>
+    <div id="dDiv" style=" height:520px;top:23px; width:1050px;overflow:auto;">
+        <table id="tb1" width="1000px"  border="1" cellpadding="0" cellspacing="0" class="result_browse_table"  style="margin-left: 15px;">
+        <tbody>
+            {% for result in result_fibrosis %}
+            <tr>
+                <td width="17%" class="result_browse_table_td" height="35">{{ result.gene_symbol }}</td>
+                <td width="26%" class="result_browse_table_td">{{ result.disease }}</td>
+                <td width="17%" class="result_browse_table_td">{{ result.expression }}</td>
+                <td width="13%" class="result_browse_table_td">{{ result.species }}</td>
+                <td width="10%" class="result_browse_table_td">{{ result.tissue }}</td>
+                <td width="10%" class="result_browse_table_td">
+                    {% for s in result.pmid %}
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/{{ s }}/" target="_blank" class="pmid">{{ s }}</a>
+                   </td>
+                <td width="7%" class="result_browse_table_td"><a href="/FDRdb/browse_detail/{{ result.gene_symbol }}/{{ result.disease }}/{{ result.species }}/{{ s }}/" target="_blank" class="pmid">details</a></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+</td>
+<script>
+function exportto() {
+    $('.result_browse_table').tableExport({
+        filename: '{{ file_name }}_fibrosis',
+        format: 'csv',
+        cols:'1,2,3,4,5,6',
+        head_delimiter:',',
+        col_delimiter:',',
+    });
+}
+
+$(document).ready(function () {
+            $("#result_browse_table").freezeHeader({ 'height': '520px' });
+        })
+</script>
+
+
+    </tr>
+    <tr>
+     <td height="70" class="bottom"><p>FDRdb: Fibrosis Disease-associated RNAnome database</p>
+        <p> Contact lianghaihai@ems.hrbmu.edu.cn for inquiries and feedback</p>
+        <p>© All right reserved 2021<br>
+        </p></td>
+    </tr>
+    </tbody>
+</table>
+<div id="brain" class="anno_svg"></div>
+<div id="eye" class="anno_svg"></div>
+<div id="stomach" class="anno_svg"></div>            
+<div id="lung" class="anno_svg"></div>
+<div id="heart" class="anno_svg"></div>
+<div id="liver" class="anno_svg"></div>
+<div id="pancreas" class="anno_svg"></div>
+<div id="kidney" class="anno_svg"></div>
+<div id="spleen" class="anno_svg"></div>
+<div id="intestine" class="anno_svg"></div>
+<div id="skin" class="anno_svg"></div>
+<div id="uterus" class="anno_svg"></div>
+<div id="nerve" class="anno_svg"></div>
+<div id="bone" class="anno_svg"></div>
+<div id="blood" class="anno_svg"></div>
+<div id="homo_sapiens" class="anno_svg" style="width: 104px;"></div>
+<div id="mus_musculus" class="anno_svg" style="width: 102px;"></div>
+<div id="rattus_norvegicus" class="anno_svg" style="width: 124px;"></div>
+<div id="ovis_aries" class="anno_svg" style="width: 67px;"></div>
+<div id="lucilia" class="anno_svg" style="width: 40px;"></div>
+<div id="porcine" class="anno_svg" style="width: 55px;"></div>
+<div id="canis_familiaris" class="anno_svg" style="width: 149px;"></div>
+<div id="sus_scrofa" class="anno_svg" style="width: 71px;"></div>
+</body>
+</html>

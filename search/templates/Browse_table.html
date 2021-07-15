@@ -1,0 +1,140 @@
+
+
+
+
+<td style="width:1082px; height:600px;border: 0;" valign="top" id="result_table">
+    <script src="/static/GI/js/jquery.min.3.1.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/FDRdb/static/js/jquery.freezeheader.js"></script>
+
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+
+    <script>
+var hDiv = document.getElementById('hDiv');
+var dDiv = document.getElementById('dDiv');
+var tb0 = document.getElementById('tb0');
+dDiv.onscroll = function() {
+    tb0.style.left = dDiv.scrollLeft * -1 + 'px'
+}
+    </script>
+<style>
+.result_browse_table {
+    font-family: "MS Serif", "New York", serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #FFF;
+    background-color: #AA6539;
+    text-align: center;
+}
+
+.result_browse_table_td {
+    font-family: "MS Serif", "New York", serif;
+    font-size: 16px;
+    color: #AA6539;
+    text-align: center;
+    background-color: #FFF;
+    font-weight: normal;
+}
+
+.result_browse_table_top {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px;
+    font-weight: bolder;
+    color: #AA6539;
+    text-decoration: none;
+}
+
+
+.pmid {
+    font-family: "MS Serif", "New York", serif;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #AA6539;
+    background-color: #FFF;
+    text-align: center;
+    text-decoration: none;
+}
+
+</style>
+
+    <table>
+        <tr>
+            <td width="450" height="80" class="result_browse_table_top">
+                <span onclick="exportto()" style="cursor:pointer">click here to download the table</span>
+            </td>
+        </tr>
+    </table>
+    <div style="overflow: auto;height:500px;">
+        <div id="hDiv" style=" width:1050px;height: 47px;overflow:hidden;">
+            <table width="1000px" border="1" cellpadding="0" cellspacing="0" class="result_browse_table" id="tb0" style="margin-left:15px;">
+        <thead>
+            <tr>
+                <th width="17%" height="35">RNA symbol</th>
+                <th width="10%">RNA ID</th>
+                <th width="26%">Disease name</th>
+                <th width="17%">Alteration</th>
+                <th width="13%">Species</th>
+                <th width="10%">Tissue/<br>Cell line</th>
+                <th width="7%">Details</th>
+            </tr>
+        </thead>
+    </table>
+        </div>
+    <div id="dDiv" style=" height:450px;top:23px; width:1050px;overflow:auto;">
+        <table id="tb1" width="1000px"  border="1" cellpadding="0" cellspacing="0" class="result_browse_table" style="margin-left:15px;">
+        <tbody>
+            {% for result in result_info %}
+            <tr style="word-break: break-all; word-wrap:break-word;">
+                <td width="17%" class="result_browse_table_td" height="35">{{ result.gene_symbol }}</td>
+                {% if result.source == "miRBase" %}
+                <td width="10%" class="result_browse_table_td"><a href="http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc={{ result.gene_id }}" target="_blank" class="pmid">{{ result.gene_id }}</a></td>
+                {% elif result.source == 'Gene' %}
+                <td width="10%" class="result_browse_table_td"><a href="https://www.ncbi.nlm.nih.gov/gene/?term={{ result.gene_id }}" target="_blank" class="pmid">{{ result.gene_id }}</a></td>
+                {% elif result.source == 'Ensembl' %}
+                <td width="10%" class="result_browse_table_td"><a href="http://www.ensembl.org/Multi/Search/Results?q={{ result.gene_id }};site=ensembl_all" target="_blank" class="pmid">{{ result.gene_id }}</a></td>
+                {% elif result.source == 'circBase' %}
+                <td width="10%" class="result_browse_table_td"><a href="http://www.circbase.org/cgi-bin/singlerecord.cgi?id=hsa_{{ result.gene_id }}" target="_blank" class="pmid">{{ result.gene_id }}</a></td>
+                {% elif result.source == 'RNAcentral' %}
+                <td width="10%" class="result_browse_table_td"><a href="https://rnacentral.org/search?q={{ result.gene_id }}" target="_blank" class="pmid">{{ result.gene_id }}</a></td>
+                {% elif result.source == '' %}
+                <td width="10%" class="result_browse_table_td">{{ result.gene_id }}</td>
+                {% endif %}
+                <td width="26%" class="result_browse_table_td">{{ result.disease }}</td>
+                <td width="17%" class="result_browse_table_td">{{ result.expression }}</td>
+                <td width="13%" class="result_browse_table_td">{{ result.species }}</td>
+                <td width="10%" class="result_browse_table_td">{{ result.tissue }}</td>
+                
+                    {% for s in result.pmid %}
+                <td width="7%" class="result_browse_table_td"><a href="/FDRdb/browse_detail/{{ result.gene_symbol }}/{{ result.disease }}/{{ result.species }}/{{ s }}/" target="_blank" class="pmid">details</a></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+</td>
+<script>
+function exportto() {
+    $('.result_browse_table').tableExport({
+        filename: '{{ file_name }}_fibrosis',
+        format: 'csv',
+        cols:'1,2,3,4,5,6,7',
+        head_delimiter:',',
+        col_delimiter:',',
+    });
+}
+
+$(document).ready(function () {
+            $("#result_browse_table").freezeHeader({ 'height': '520px' });
+        })
+</script>
+
+
+
+
+
+
+
+
+

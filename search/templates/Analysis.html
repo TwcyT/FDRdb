@@ -1,0 +1,149 @@
+
+
+
+<td style="height:395px;border:0px" align = center valign="top">
+        <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/tab.css" />
+        <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/input_button.css" />
+
+    <style>
+    .search_title_1 {
+        font-family: "MS Serif", "New York", serif;
+        font-size: 20px;
+        font-style: italic;
+        color: #06C;
+        text-align: center;
+        font-weight: bold;
+        background-color: #FCC;
+        padding-top: 16px;
+    }
+    .search_example{
+        width: 60%;
+        margin-left: 20%;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .example_tr{
+        height:35px;
+    }
+    </style>
+
+        <table style="width:1100px;text-align: center;" border="1" align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+
+
+                <tr>
+                    <td style="height:70px;">
+
+			    <div class="clear-shadow"></div>
+
+		        <div class="content" style="height: 450px">
+			        <div class="content-1" style="opacity: 1;">
+                        <table>
+                            <tr>
+                                <td class="anno_p" style="width:50%;" valign="top">
+                                    <h2>Bioinformatics Analysis</h2>
+                                    <p>
+FDRdb allows you to upload your own RNA expression profile data for analysis. You should prepare two kinds of profiles:
+                                    </p>
+                                    <ul>
+                                        <li><p>Expression profile (<a href="/FDRdb/expression_example">Download example file</a>)</p></li>
+                                        <li><p>Sample class profile (<a href="/FDRdb/class_example">Download example file</a>)</p></li>
+                                    </ul>
+<p>Profiles must be uploaded in .txt format.<br />
+You can select the species for which the data correspond to get the fibrosis-related RNA results. Point the “Apply” button, the FDRdb will perform differential expression analysis and pathway enrichment. All the results are visualized and can be downloaded.
+                                    <span style="color: red">Please pay attention! If you want to get fibrosis related RNA results, the RNA label in your profiling data must follow the rules.</span><br />
+    See the "Help" page for more details.
+</p>
+                                </td>
+                                <td class="anno_p_p" style="padding-left: 30px;">
+
+                        <form id="diff_form" action="/FDRdb/Apply/" method="post" enctype="multipart/form-data" target="_blank">
+                            {% csrf_token %}
+                            <table style="table-layout: fixed;margin-left: 25px" width="410">
+                                <tbody>
+                                <tr style="height: 100px">
+                                    <td>
+                                        <p style="margin-left: 85px;border-left: none;"><span style="color: red">*</span>Please upload the <span style="color: red">expression profile</span> here.</p>
+<input class="ant-btn ant-btn-red" type="button" onclick="document.getElementById('inputFile').click()" value="Browse..." />
+<input class="tl-price-input" type="file" id="inputFile" name="analysis" style="display:none" onchange="changeAgentContent()" />
+<input class="tl-price-input" type="text" value="" style="width: 300px" disabled id="inputFileAgent" />
+<script type="text/javascript">
+    function changeAgentContent(){
+        document.getElementById("inputFileAgent").value = document.getElementById("inputFile").value;
+    }
+</script>
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 100px">
+                                    <td>
+                                        <p style="margin-left: 85px;border-left: none;"><span style="color: red">*</span>Please upload the <span style="color: red">sample class file</span> here.</p>
+<input class="ant-btn ant-btn-red" type="button" onclick="document.getElementById('inputFile2').click()" value="Browse..." />
+<input class="tl-price-input" type="file" id="inputFile2" name="class" style="display:none" onchange="changeAgentContent2()" />
+<input class="tl-price-input" type="text" value=""  style="width: 300px" disabled id="inputFileAgent2" />
+<script type="text/javascript">
+    function changeAgentContent2(){
+        document.getElementById("inputFileAgent2").value = document.getElementById("inputFile2").value;
+    }
+</script>
+                                    </td>
+                                </tr>
+                                <tr style="height: 100px">
+                                    <td>
+                                        <p style="border-left: none;">You can select the species that corresponds to your file sample to obtain fibrosis related results.</p>
+                                        <select id="species_select" class="tl-price-input" name="species_select" style="width: 403px">
+                                            <option>None</option>
+                                            <option value="human">Homo sapiens</option>
+                                            <option value="mice">Mus musculus</option>
+                                            <option value="rat">Rattus norvegicus</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr style="height: 150px">
+                                    <td>
+                                        <div id="apply_button" style="opacity: 1;">
+                            <input onclick="return checkform2()" type="submit" class="ant-btn ant-btn-red" value="Apply" style="float: right">
+                                        </div>
+                            <script type="text/javascript">
+
+                                function checkform2(){
+                                    if(document.getElementById('inputFile').value.length==0){
+                                        alert('Please upload all required files which marked *');
+                                        document.getElementById('inputFile').focus();
+                                        return false;
+                                    } else if (document.getElementById('inputFile2').value.length==0){
+                                        alert('Please upload all required files which marked *');
+                                        document.getElementById('inputFile2').focus();
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                                </script>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+
+
+                        </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+		        </div>
+			</section>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    
+    </td>
+    

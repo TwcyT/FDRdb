@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/style_main.css">
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.css" />
+	<link rel="stylesheet" href="https://static.runoob.com/assets/js/jquery-treeview/screen.css" />
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.cookie.js"></script>
+	<script src="https://static.runoob.com/assets/js/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/GI/js/tableExporter.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/FDRdb/static/css/button.css">
+
+    <script type="text/javascript" src="/static/CGIdb2/static/js/jquery.freezeheader.js"></script>
+        <script>
+            function exportto() {
+                $('.result_browse_table').tableExport({
+                    filename: '{{ file_name }}_fibrosis',
+                    format: 'csv',
+                    cols:'1,2,3,4,5,6',
+                    head_delimiter:',',
+                    col_delimiter:',',
+                });
+            }
+
+            $(document).ready(function () {
+                        $("#result_browse_table").freezeHeader({ 'height': '520px' });
+                    })
+            </script>
+
+
+    <style>
+
+ul {
+    list-style:none;
+}
+.fl-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 1000px;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
+}
+    </style>
+    <title>FDRdb</title>
+</head>
+<body>
+<table width="1282" border="1" align="center" cellpadding="0" cellspacing="0" class="tableback" style="background-color: white;">
+    <tbody>
+    <tr>
+        <td valign="top"><img src="/static/FDRdb/static/image/home_top.gif" width="1282" height="203" style="display:block"></td>
+    </tr>
+
+    <tr id="context_panel">
+        <td>
+            <table width="1250" border="0" align="center" cellpadding="0" cellspacing="0">
+                        {% if index %}
+                        <tbody>
+                        <tr>
+                            <td style="height: 500px; text-align: center;">
+                                <h2 style="color: #398080;">There is no analysis results. </h2>
+                                <h2 style="color: #398080;"> Please check that the file format you uploaded is correct. </h2>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                        {% else %}
+                        <tbody>
+                <tr>
+                    <td>
+                        <table style="border: 1px solid #000;table-layout: fixed;margin-left: 125px;" width="1000"><tbody>
+                        <tr>
+                            <td>
+                                <div style="height: 25px;text-align: center;background-color: #385c5b;color: white">
+                                Statistical results
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                    <table class="fl-table" style=" table-layout: fixed" width="1000">
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                Number of samples
+                            </td>
+                            <td>
+                                {{ number_sample }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Number of class I samples
+                            </td>
+                            <td>
+                                {{ class1_sample }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Number of class II samples
+                            </td>
+                            <td>
+                                {{ class2_sample }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Number of RNAs
+                            </td>
+                            <td>
+                                {{ All_gene_num }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Differential up-regulation RNAs
+                            </td>
+                            <td>
+                                {{ Diff_genes_up }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Differential down-regulation RNAs
+                            </td>
+                            <td>
+                                {{ Diff_genes_down }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Differential up-regulation fibrotic RNAs
+                            </td>
+                            <td>
+                                {{ up_fibrosis }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Differential down-regulation fibrotic RNAs
+                            </td>
+                            <td>
+                                {{ down_fibrosis }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="height: 50px;">
+                                <a href="/FDRdb/diff_download/{{ dataname }}">
+                                    <a href="/FDRdb/diff_download/{{ dataname }}" class="button large blue">Download Results</a>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                        </td></tr></tbody></table>
+                    </td>
+                </tr>
+                <!--
+                <tr>
+                    <td>
+                    <table style="border: 1px solid #000; table-layout: fixed;margin-left: 125px" width="1000">
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div style="height: 25px;text-align: center;background-color: #385c5b;color: white">
+                                Histogram of fold-change
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src={{ fdimg_name }} width="560" height="420" style="margin-left:220px">
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <table style="border: 1px solid #000; table-layout: fixed;margin-left: 125px" width="1000">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div style="height: 25px;text-align: center;background-color: #385c5b;color: white">
+                                Histogram of P value
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src={{ pimg_name }} width="560" height="420" style="margin-left:220px">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
+                -->
+                <tr>
+                    <td>
+                    <table style="border: 1px solid #000; table-layout: fixed;margin-left: 125px" width="1000">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div style="height: 25px;text-align: center;background-color: #385c5b;color: white">
+                                Volcano of differentially expressed RNAs
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% if result_diff_bool == 0 %}
+                                    <img src={{ volcanoimg_name }} width="640" height="480" style="margin-left:180px">
+                                {% else %}
+                                    <p>No differential RNAs between two cluster samples.</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <table style="border: 1px solid #000; table-layout: fixed;margin-left: 125px" width="1000">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div style="height: 25px;text-align: center;background-color: #385c5b;color: white">
+                                Heatmap clustering of RNAs
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% if result_diff_heat == 0 %}
+                                    <img src={{ heatimg_name }} width="560" height="560" style="margin-left:220px">
+                                {% else %}
+                                    <p>No differential RNAs between two cluster samples.</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <table style="border: 1px solid #000; table-layout: fixed;margin-left: 125px" width="1000">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div style="height: 25px;text-align: center;background-color: #385c5b;color: white">
+                                Pathway enrichment analysis (KEGG)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% if kegg_index == 1 %}
+                                    <img src={{ keggimg_name }} style="margin-left:150px">
+                                {% else %}
+                                    <p>No enrichment results of differential RNAs in KEGG.</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <table style="border: 1px solid #000; table-layout: fixed;margin-left: 125px" width="1000">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div style="height: 25px;text-align: center;background-color: #385c5b;color: white">
+                                Biological process enrichment analysis (GO)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% if go_index == 1 %}
+                                    <img src={{ goimg_name }} style="margin-left:150px">
+                                {% else %}
+                                    <p>No enrichment results of differential RNAs in GO.</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
+                </tbody>
+                        {% endif %}
+            </table>
+        </td>
+    </tr>
+    <tr>
+     <td height="70" class="bottom"><p>FDRdb: Fibrotic Disease-associated RNAome database</p>
+        <p> Contact lianghaihai@ems.hrbmu.edu.cn for inquiries and feedback</p>
+        <p>© All right reserved 2021<br>
+        </p></td>
+    </tr>
+    </tbody>
+</table>
+            <script>
+                function exportto() {
+                    $('.result_browse_table').tableExport({
+                        filename: '{{ file_name }}_fibrosis',
+                        format: 'csv',
+                        cols:'1,2,3,4,5,6',
+                        head_delimiter:',',
+                        col_delimiter:',',
+                    });
+                }
+
+                $(document).ready(function () {
+                            $("#result_browse_table").freezeHeader({ 'height': '520px' });
+                        })
+                </script>
+</body>
+</html>
